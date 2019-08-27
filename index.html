@@ -1,186 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Relay Control</title>
-  <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <!-- Material Design for Bootstrap fonts and icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+  <!-- Site Properities -->
+  <title>Relay Timer | Login</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/site.css">
 
-    <!-- Material Design for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-    
-  <script type="text/javascript" src="timer.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/container.css">
+  <link rel="stylesheet" type="text/css" href="css/grid.css">
+  <link rel="stylesheet" type="text/css" href="css/header.css">
+  <link rel="stylesheet" type="text/css" href="css/image.css">
+  <link rel="stylesheet" type="text/css" href="css/menu.css">
+
+  <link rel="stylesheet" type="text/css" href="css/divider.css">
+  <link rel="stylesheet" type="text/css" href="css/segment.css">
+  <link rel="stylesheet" type="text/css" href="css/form.css">
+  <link rel="stylesheet" type="text/css" href="css/input.css">
+  <link rel="stylesheet" type="text/css" href="css/button.css">
+  <link rel="stylesheet" type="text/css" href="css/list.css">
+  <link rel="stylesheet" type="text/css" href="css/message.css">
+  <link rel="stylesheet" type="text/css" href="css/icon.css">
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/login.js"></script>
+  <style type="text/css">
+    body {
+      background-color: #DEDEDE;
+    }
+    body .grid {
+      height: 100%;
+    }
+    .image {
+      margin-top: -100px;
+    }
+    .column {
+      max-width: 450px;
+    }
+    a {
+      color: black;
+    }
+  </style>
+
   
 </head>
-<body onload="inittable()">
-  <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+<body>
 
-  <div class="container">
-  
-    <div class="row">
-      <div class="col-9">
-        <div id="table"></div>                      
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui teal image header">
+      <!--<img src="img/fiture.png" class="image">-->
+      <div class="content">
+        <h1>Relay Timer</h1>
       </div>
-
-      <div class="col-3">
-        <p>
-          <button type="button" class="btn btn-outline-primary" onclick="refresh()">Refresh</button>
-        </p> 
-          
-        <p>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addschedule" aria-expanded="false" aria-controls="addschedule">
-            + Add Schedule
-          </button>
-        </p>
-        <div class="collapse" id="addschedule">
-          <div class="card card-body" style="width: 125%">   
-              <div class="form-row">                  
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="mon" value="mon"> Mon &nbsp;
-                  </label>              
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="tue" value="tue"> Tue &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="wed" value="wed"> Wed &nbsp;
-                </label> 
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="thu" value="thu"> Thu &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="fri" value="fri"> Fri &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="sat" value="sat"> Sat &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="sun" value="sun"> Sun &nbsp;
-                </label>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-2">
-                  <label for="addmode">Mode</label>
-                  <select id="addmode" class="form-control">
-                    <option selected>0</option>
-                    <option>1</option>                
-                    <option>2</option>
-                    <option>3</option>                
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  Start
-                </div>
-                <div class="form-group col-md-3">
-                  <label for="inputState">Hour</label>
-                  <select id="starthr" class="form-control">
-                    <option selected>All</option>
-                    <option>00</option>
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                    <option>04</option>
-                    <option>05</option>
-                    <option>06</option>
-                    <option>07</option>
-                    <option>08</option>
-                    <option>09</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                  </select>
-                </div>              
-                <div class="form-group col-md-3">                  
-                  <label for="inputState">Min</label>
-                  <select id="startmin" class="form-control">
-                    <option selected>All</option>
-                    <option>00</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  End
-                </div>
-                <div class="form-group col-md-3">
-                  <label for="inputState">Hour</label>
-                  <select id="endhr" class="form-control">
-                    <option selected>All</option>
-                    <option>00</option>
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                    <option>04</option>
-                    <option>05</option>
-                    <option>06</option>
-                    <option>07</option>
-                    <option>08</option>
-                    <option>09</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                  </select>
-                </div>              
-                <div class="form-group col-md-3">                  
-                  <label for="inputState">Min</label>
-                  <select id="endmin" class="form-control">
-                    <option selected>All</option>
-                    <option>00</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                  </select>
-                </div>
-              </div>
-
-              <button class="btn btn-primary" onclick="add()">Add</button>
+    </h2>
+    <form class="ui large form">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">            
+            <input type="text" id="name" placeholder="Account">
           </div>
         </div>
-      </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <input type="password" id="password" placeholder="Password" onkeydown = "if (event.keyCode == 13) onlogin()">
+          </div>
+        </div>
+        <div class="ui fluid large teal submit button" onclick="onlogin()">Login</div>
+      </div>      
 
-    </div>
+    </form>
   </div>
-
+</div>
 </body>
+
 </html>
