@@ -171,8 +171,7 @@ function drawtable(){
                 <div class="form-group col-md-3">
                   <label for="cellmode`+ v + `_` + i +`">Mode</label>
                   <select id="cellmode`+ v + `_` + i +`" class="form-control">
-                    <option selected>0</option>
-                    <option>1</option>                
+                    <option selected>1</option>              
                     <option>2</option>
                     <option>3</option>                
                   </select>
