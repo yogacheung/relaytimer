@@ -23,6 +23,28 @@ function checking(){
   // not yet
 }
 
+function checkallday(){
+  var all = document.getElementById('all').checked;
+  if(all){
+    document.getElementById('mon').checked = true;
+    document.getElementById('tue').checked = true;
+    document.getElementById('wed').checked = true;
+    document.getElementById('thu').checked = true;
+    document.getElementById('fri').checked = true;
+    document.getElementById('sat').checked = true;
+    document.getElementById('sun').checked = true;
+  }
+  else {
+    document.getElementById('mon').checked = false;
+    document.getElementById('tue').checked = false;
+    document.getElementById('wed').checked = false;
+    document.getElementById('thu').checked = false;
+    document.getElementById('fri').checked = false;
+    document.getElementById('sat').checked = false;
+    document.getElementById('sun').checked = false;
+  };
+}
+
 function add(){
   var mode = document.getElementById('addmode');
   var smode = mode.options[mode.selectedIndex].value;
