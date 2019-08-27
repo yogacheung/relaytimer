@@ -14,10 +14,11 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="float.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css">
   <script type="text/javascript" src="timer.js"></script>
   
 </head>
-<body onload="inittable()" style="background-color:powderblue;">
+<body onload="inittable()">
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
@@ -29,9 +30,9 @@
   <div class="container">
   
     <div class="row">
-      <div class="col-9">
-        <div id="table"></div>                      
-      </div>
+      
+        <div class="table table-responsive" id="table"></div>                      
+      
       <div >
           <a href="" class="float" id="menu-share">
           <i class="fa fa-cog my-float"></i>
@@ -49,7 +50,7 @@
           </a></li>
           </ul>
         </div>
-      <div class="col-3">
+      
         <p>
 <!--           <button type="button" class="btn btn-outline-primary" onclick="refresh()">Refresh</button>
         </p>
@@ -197,7 +198,7 @@
               <button class="btn btn-primary" onclick="add()">Add</button>
           </div>
         </div>
-      </div>
+      
 
     </div>
   </div>

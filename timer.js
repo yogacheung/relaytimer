@@ -138,7 +138,7 @@ function add(){
 }
 
 function remove(h ,w){
-  timetable[h][w] = 0;
+  timetable[h][w] = 1;
 
   //console.log(timetable[h][w]);
   drawtable();
@@ -166,16 +166,16 @@ function drawtable(){
 
   var table = '';
 
-  table += '<table border="1" stype="border-spacing:10" font-size="5%">';
-  table += '<thead><tr>';
+  table += '<table class="table" border="1" stype="border-spacing:10" font-size="5%">';
+  table += '<thead class="thead-dark"><tr>';
   table += '<th></th>';
-  table += '<th>Monday</th>';
-  table += '<th>Tuesday</th>';
-  table += '<th>Wednesday</th>';
-  table += '<th>Thursday</th>';
-  table += '<th>Friday</th>';
-  table += '<th>Saturday</th>';
-  table += '<th>Sunday</th>';
+  table += '<th scope="col">Monday</th>';
+  table += '<th scope="col">Tuesday</th>';
+  table += '<th scope="col">Wednesday</th>';
+  table += '<th scope="col">Thursday</th>';
+  table += '<th scope="col">Friday</th>';
+  table += '<th scope="col">Saturday</th>';
+  table += '<th scope="col">Sunday</th>';
   table += '</tr></thead>';
 
   table += '<tbody>';
@@ -183,10 +183,10 @@ function drawtable(){
   for(var hr = 0; hr < 24; hr++){    
     for(var min = 0; min < 6; min++){
       table += '<tr>';
-      table += '<td>' + hrs[hr] + ':' + mins[min] + '</td>';
+      table += '<td class="align-middle">' + hrs[hr] + ':' + mins[min] + '</td>';
       var v = hr*6+min;
       for(var i = 0; i < 7; i++){
-        table += `<td> 
+        table += `<td > 
         <button class="btn btn-primary" id="b`+ v + `_` + i +`" type="button" data-toggle="collapse" data-target="#update`+ v + `_` + i +`" aria-expanded="false" aria-controls="update`+ v + `_` + i +`">
           `+ timetable[v][i] +`  
           </button>        
