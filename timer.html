@@ -11,11 +11,13 @@
 
     <!-- Material Design for Bootstrap CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-    
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="float.css">
   <script type="text/javascript" src="timer.js"></script>
   
 </head>
-<body onload="inittable()">
+<body onload="inittable()" style="background-color:powderblue;">
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
@@ -30,17 +32,33 @@
       <div class="col-9">
         <div id="table"></div>                      
       </div>
-
+      <div >
+          <a href="" class="float" id="menu-share">
+          <i class="fa fa-cog my-float"></i>
+          </a>
+          <ul>
+          <li><a herf="" data-toggle="collapse" data-target="#addschedule" aria-expanded="false" aria-controls="addschedule">
+          <i class="fa fa-pencil my-float"></i>
+          </a>
+          </li>
+          <li><a href="javascript:refresh()">
+          <i class="fa fa-refresh my-float"></i>
+          </a></li>
+          <li><a href="javascript:logout()">
+          <i class="fa fa-sign-out my-float"></i>
+          </a></li>
+          </ul>
+        </div>
       <div class="col-3">
         <p>
-          <button type="button" class="btn btn-outline-primary" onclick="refresh()">Refresh</button>
-        </p> 
-          
+<!--           <button type="button" class="btn btn-outline-primary" onclick="refresh()">Refresh</button>
+        </p>
         <p>
+          <a class="btn-floating btn-lg btn-default"><i class="fas fa-bolt"></i></a>
           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addschedule" aria-expanded="false" aria-controls="addschedule">
             + Add Schedule
           </button>
-        </p>
+        </p> -->
         <div class="collapse" id="addschedule">
           <div class="card card-body" style="width: 125%">   
               <div class="form-row">                  
