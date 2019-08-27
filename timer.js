@@ -131,6 +131,10 @@ function add(){
   savefile();
   first = false;  
   drawtable();
+
+
+
+
 }
 
 function remove(h ,w){
@@ -236,17 +240,18 @@ function readfile(callback){
 }
 
 function refresh(){
-  readfile(function(res){
-    //console.log(res);
-    var v = res.split('\n');
-    for(var i = 0; i < 144; i++){
-      var w = v[i].split(',');
-      for(var j = 0; j < 7; j++){
-        timetable[i][j] = w[j];
-      } 
-    }
-    drawtable();
-  });
+  // readfile(function(res){
+  //   //console.log(res);
+  //   var v = res.split('\n');
+  //   for(var i = 0; i < 144; i++){
+  //     var w = v[i].split(',');
+  //     for(var j = 0; j < 7; j++){
+  //       timetable[i][j] = w[j];
+  //     } 
+  //   }
+  //   drawtable();
+  // });
+  location.reload();
 }
 
 function savefile(){
