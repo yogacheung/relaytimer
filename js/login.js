@@ -1,6 +1,6 @@
 function login(name, password, callback){
   $.ajax({    
-    url: "login.php?name="+name+"&password="+password,    
+    url: "php/login.php?name="+name+"&password="+password,    
   })
   .done(callback);
 }
