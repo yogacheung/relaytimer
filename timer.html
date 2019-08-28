@@ -1,206 +1,263 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Relay Control</title>
+  <title>Chiller Relay Control</title>
   <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Material Design for Bootstrap fonts and icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-
-    <!-- Material Design for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="float.css">
+    <link rel="stylesheet" href="css/float.css">
     <link rel="stylesheet" type="text/css" href="css/site.css">
-  <script type="text/javascript" src="timer.js"></script>
-  
+    <script type="text/javascript" src="js/timer.js"></script>
+    <style>
+      table, th, td {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 130%;
+      }
+    </style>
 </head>
 <body onload="inittable()">
-  <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <div class="container">
+  <script>
+    $(document).ready(function(){
+      $('.modal').modal();
+    });
+  </script>
   
+  <script>
+    $(document).ready(function(){
+    $('select').formSelect();
+  });
+  </script>
+  
+  <div >
+    <a href="" class="float" id="menu-share">
+    <i class="fa fa-cog my-float"></i>
+    </a>
+    <ul>
+      <li><a class="modal-trigger" href="#modal1">
+      <i class="fa fa-pencil my-float"></i>
+      </a>
+      </li>
+      <li><a href="javascript:refresh()">
+      <i class="fa fa-refresh my-float"></i>
+      </a></li>
+      <li><a href="javascript:logout()">
+      <i class="fa fa-sign-out my-float"></i>
+      </a></li>
+    </ul>
+  </div>
+          
+  <div class="container">
+    
+    <div class="row">
+        <i class="large material-icons" style="font-size: 60px;">access_time</i><div style="font-size: 40px;padding-top: 20px;" id="clockbox"></div>
+    </div>
+    
     <div class="row">
       
-        <div class="table table-responsive" id="table"></div>                      
+      <div class="table table-responsive" id="table"></div>                      
+                  
+    </div>
+  
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal" style="height: 460px">
+    <div class="modal-content">
+      <h4>Add Schedule</h4>      
       
-      <div >
-          <a href="" class="float" id="menu-share">
-          <i class="fa fa-cog my-float"></i>
-          </a>
-          <ul>
-          <li><a herf="" data-toggle="collapse" data-target="#addschedule" aria-expanded="false" aria-controls="addschedule">
-          <i class="fa fa-pencil my-float"></i>
-          </a>
-          </li>
-          <li><a href="javascript:refresh()">
-          <i class="fa fa-refresh my-float"></i>
-          </a></li>
-          <li><a href="javascript:logout()">
-          <i class="fa fa-sign-out my-float"></i>
-          </a></li>
-          </ul>
+      <div class="container">
+        <div class="row">
+          <label>
+            <input type="checkbox" class="filled-in" id="mon"/>
+            <span>Mon &nbsp;</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filled-in" id="tue"/>
+            <span>Tue &nbsp;</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filled-in" id="wed"/>
+            <span>Wed &nbsp;</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filled-in" id="thu"/>
+            <span>Thu &nbsp;</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filled-in" id="fri"/>
+            <span>Fri &nbsp;</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filled-in" id="sat"/>
+            <span>Sat &nbsp;</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filled-in" id="sun"/>
+            <span>Sun &nbsp;</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filled-in" id="all" onchange="checkallday()"/>
+            <span>All &nbsp;</span>
+          </label>
         </div>
-      
-        <p>
-<!--           <button type="button" class="btn btn-outline-primary" onclick="refresh()">Refresh</button>
-        </p>
-        <p>
-          <a class="btn-floating btn-lg btn-default"><i class="fas fa-bolt"></i></a>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addschedule" aria-expanded="false" aria-controls="addschedule">
-            + Add Schedule
-          </button>
-        </p> -->
-        <div class="collapse" id="addschedule">
-          <div class="card card-body" style="width: 125%">   
-              <div class="form-row">                  
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="mon" value="mon"> Mon &nbsp;
-                  </label>              
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="tue" value="tue"> Tue &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="wed" value="wed"> Wed &nbsp;
-                </label> 
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="thu" value="thu"> Thu &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="fri" value="fri"> Fri &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="sat" value="sat"> Sat &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="sun" value="sun"> Sun &nbsp;
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="all" value="all" onchange="checkallday()"> ALL &nbsp;
-                </label>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-2">
-                  <label for="addmode">Mode</label>
-                  <select id="addmode" class="form-control">
-                    <option selected>1</option>               
-                    <option>2</option>
-                    <option>3</option>                
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  Start
-                </div>
-                <div class="form-group col-md-3">
-                  <label for="inputState">Hour</label>
-                  <select id="starthr" class="form-control">
-                    <option selected>All</option>
-                    <option>00</option>
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                    <option>04</option>
-                    <option>05</option>
-                    <option>06</option>
-                    <option>07</option>
-                    <option>08</option>
-                    <option>09</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                  </select>
-                </div>              
-                <div class="form-group col-md-3">                  
-                  <label for="inputState">Min</label>
-                  <select id="startmin" class="form-control">
-                    <option selected>All</option>
-                    <option>00</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  End
-                </div>
-                <div class="form-group col-md-3">
-                  <label for="inputState">Hour</label>
-                  <select id="endhr" class="form-control">
-                    <option selected>All</option>
-                    <option>00</option>
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                    <option>04</option>
-                    <option>05</option>
-                    <option>06</option>
-                    <option>07</option>
-                    <option>08</option>
-                    <option>09</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                  </select>
-                </div>              
-                <div class="form-group col-md-3">                  
-                  <label for="inputState">Min</label>
-                  <select id="endmin" class="form-control">
-                    <option selected>All</option>
-                    <option>00</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                  </select>
-                </div>
-              </div>
-
-              <button class="btn btn-primary" onclick="add()">Add</button>
+        
+        <div class="row">
+          <div class="col-sm">
+            Mode Select
+          </div>
+          <div class="col-sm">
+            <select class="browser-default" id="addmode">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="col-sm">
           </div>
         </div>
-      
-
+        
+        <div class="row">
+          <div class="col-sm">
+            <h6>Start</h6>      
+          </div>
+          <div class="col-sm">
+            <label>Hour Select</label>
+              <select class="browser-default" id="starthr">
+                <option value="all" selected>All</option>
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+              </select>
+          </div>
+          <div class="col-sm">
+            <label>Min Select</label>
+              <select class="browser-default" id="startmin">
+                <option value="all" selected>All</option>
+                <option value="00">00</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <h6>End</h6>      
+          </div>
+          <div class="col-sm">
+            <label>Hour Select</label>
+              <select class="browser-default" id="endhr">
+                <option value="all" selected>All</option>
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+              </select>
+          </div>
+          <div class="col-sm">
+            <label>Min Select</label>
+              <select class="browser-default" id="endmin">
+                <option value="all" selected>All</option>
+                <option value="00">00</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>  
+          </div>
+        </div>
+      </div>
+    
     </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a class="modal-close waves-effect waves-green btn-flat" onclick="add()">Add</a>
+    </div>
+  </div>
+  
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal" style="height: 250px">
+    <div class="modal-content">
+      <h4>Edit</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            Mode Select
+          </div>
+          <div class="col-sm">
+            <select class="browser-default" id="cellmode">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="col-sm">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a class="modal-close waves-effect waves-green btn-flat" onclick="remove()">Remove</a>
+      <a class="modal-close waves-effect waves-green btn-flat" onclick="update()">Update</a>
+    </div>
+  </div>
+    
   </div>
 
 </body>

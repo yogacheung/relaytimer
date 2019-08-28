@@ -1,22 +1,33 @@
 var timetable;
 var hrs = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
 var mins = ["00", "10", "20", "30", "40", "50"];
+
+var tday = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+var tmonth = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+
+var cellmode = new Array(0, 0);
+
 var first = true;
 
 function inittable(){
   initdata();
+  clock();
   
-  readfile(function(res){
-    //console.log(res);
-    var v = res.split('\n');
-    for(var i = 0; i < 144; i++){
-      var w = v[i].split(',');
-      for(var j = 0; j < 7; j++){
-        timetable[i][j] = w[j];
-      } 
-    }
-    drawtable();
-  });
+  if(first){
+    readfile(function(res){
+      //console.log(res);
+      var v = res.split('\n');
+      for(var i = 0; i < 144; i++){
+        var w = v[i].split(',');
+        for(var j = 0; j < 7; j++){
+          timetable[i][j] = w[j];
+        } 
+      }
+      first = false;
+      drawtable();
+    });  
+  }
+  setInterval(clock,1000);
 }
 
 function checking(){
@@ -69,7 +80,7 @@ function add(){
   var endmin = document.getElementById('endmin');
   var eemin = endmin.options[endmin.selectedIndex].value;
 
-  /*
+  
   console.log(smode);
   console.log(mon);
   console.log(tue);
@@ -81,18 +92,18 @@ function add(){
   console.log(ssmin);
   console.log(eehr);
   console.log(eemin);
-  */
   
-  if(sshr == 'All') var sh = 0;
+  
+  if(sshr == 'all') var sh = 0;
   else var sh = hrs.indexOf(sshr);
 
-  if(ssmin == 'All') var sm = 0;
+  if(ssmin == 'all') var sm = 0;
   else var sm = mins.indexOf(ssmin);
 
-  if(eehr == 'All') var eh = 23;
+  if(eehr == 'all') var eh = 23;
   else var eh = hrs.indexOf(eehr);
 
-  if(eemin == 'All') var em = 5;
+  if(eemin == 'all') var em = 5;
   else var em = mins.indexOf(eemin);
 
   var sv = sh * 6 + sm;
@@ -129,25 +140,25 @@ function add(){
   }
   
   savefile();
-  first = false;  
   drawtable();
-
-
-
-
 }
 
-function remove(h ,w){
+function remove(){
+  var h = cellmode[0];
+  var w = cellmode[1];
   timetable[h][w] = 1;
 
   //console.log(timetable[h][w]);
-  drawtable();
   savefile();
+  drawtable();
+
 }
 
-function update(h, w){
+function update(){
+  var h = cellmode[0];
+  var w = cellmode[1];
   //console.log(h, w);
-  var mode = document.getElementById('cellmode'+ h +'_'+ w);
+  var mode = document.getElementById('cellmode');
   var smode = mode.options[mode.selectedIndex].value;
 
   //console.log(smode);
@@ -166,16 +177,16 @@ function drawtable(){
 
   var table = '';
 
-  table += '<table class="table" border="1" stype="border-spacing:10" font-size="5%">';
+  table += '<table class="table table-bordered" stype="border-spacing:10" align="center">';
   table += '<thead class="thead-dark"><tr>';
   table += '<th></th>';
-  table += '<th scope="col">Monday</th>';
-  table += '<th scope="col">Tuesday</th>';
-  table += '<th scope="col">Wednesday</th>';
-  table += '<th scope="col">Thursday</th>';
-  table += '<th scope="col">Friday</th>';
-  table += '<th scope="col">Saturday</th>';
-  table += '<th scope="col">Sunday</th>';
+  table += '<th scope="col" style="font-size: 120%;">Monday</th>';
+  table += '<th scope="col" style="font-size: 120%;">Tuesday</th>';
+  table += '<th scope="col" style="font-size: 120%;">Wednesday</th>';
+  table += '<th scope="col" style="font-size: 120%;">Thursday</th>';
+  table += '<th scope="col" style="font-size: 120%;">Friday</th>';
+  table += '<th scope="col" style="font-size: 120%;">Saturday</th>';
+  table += '<th scope="col" style="font-size: 120%;">Sunday</th>';
   table += '</tr></thead>';
 
   table += '<tbody>';
@@ -186,26 +197,8 @@ function drawtable(){
       table += '<td class="align-middle">' + hrs[hr] + ':' + mins[min] + '</td>';
       var v = hr*6+min;
       for(var i = 0; i < 7; i++){
-        table += `<td > 
-        <button class="btn btn-primary" id="b`+ v + `_` + i +`" type="button" data-toggle="collapse" data-target="#update`+ v + `_` + i +`" aria-expanded="false" aria-controls="update`+ v + `_` + i +`">
-          `+ timetable[v][i] +`  
-          </button>        
-        <div class="collapse" id="update`+ v + `_` + i +`">
-          <div class="card card-body" style="width: 100%">
-                  
-              <div class="form-row">
-                <div class="form-group col-md-3">
-                  <label for="cellmode`+ v + `_` + i +`">Mode</label>
-                  <select id="cellmode`+ v + `_` + i +`" class="form-control">
-                    <option selected>1</option>              
-                    <option>2</option>
-                    <option>3</option>                
-                  </select>
-                </div>
-              </div>
-              <button class="btn btn-primary" onclick="remove(`+ v + `,` + i +`)">Remove</button>
-              <button class="btn btn-primary" onclick="update(`+ v + `,` + i +`)">Update</button>
-
+        table += `<td style="text-align:center;"> 
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal2" onclick="setcell(` + v + `, `+ i +`)">`+ timetable[v][i] +`</a>
         </td>`;
       }
       table += '</tr>';
@@ -227,14 +220,14 @@ function initdata(){
 
   for(var i = 0; i < 144; i++){
     for(var j = 0; j < 7; j++){
-      timetable[i][j] = 0;
+      timetable[i][j] = 1;
     } 
   }
 }
 
 function readfile(callback){  
   $.ajax({            
-    url: "readdata.php" 
+    url: "php/readdata.php"   
   })
   .done(callback);      
 }
@@ -265,11 +258,11 @@ function savefile(){
     } 
   }
   
-  console.log(data);
+  //console.log(data);
 
   $.ajax({
     type: 'POST',
-    url: 'savedata.php',
+    url: 'php/savedata.php',    
     data: data,
     dataType: 'text',
     success: function(resp){
@@ -278,8 +271,30 @@ function savefile(){
   });
 }
 
+function setcell(hm, w){
+  cellmode[0] = hm;
+  cellmode[1] = w;
+  
+  //console.log(cellmode[0], cellmode[1]);  
+    
+  //var c = document.getElementById("m2cell");  
+  //c.innerHTML = "<h4>Edit - " + hm + ":" + w + "</h4>";
+}
+
 function logout()
 {
   window.location.href="index.html";
 }
 
+function clock(){
+  var d = new Date();
+  var nday = d.getDay(), nmonth = d.getMonth(), ndate = d.getDate(), nyear = d.getYear();
+  if(nyear < 1000) nyear += 1900;
+  var nhour = d.getHours(), nmin =  d.getMinutes(),nsec = d.getSeconds();
+  
+  if(nhour<=9) nhour="0"+nhour;
+  if(nmin<=9) nmin="0"+nmin;
+  if(nsec<=9) nsec="0"+nsec;
+  
+  document.getElementById('clockbox').innerHTML = " " + ndate + " "+ tmonth[nmonth] + " " + nyear + " (" + tday[nday] + ") " + nhour + ":" + nmin + ":" + nsec;
+}
