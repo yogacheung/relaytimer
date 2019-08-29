@@ -141,6 +141,7 @@ function add(){
   
   savefile();
   drawtable();
+  resetform();
 }
 
 function remove(){
@@ -279,6 +280,23 @@ function setcell(hm, w){
     
   //var c = document.getElementById("m2cell");  
   //c.innerHTML = "<h4>Edit - " + hm + ":" + w + "</h4>";
+}
+
+function resetform(){
+    document.getElementById('mon').checked = false;
+    document.getElementById('tue').checked = false;
+    document.getElementById('wed').checked = false;
+    document.getElementById('thu').checked = false;
+    document.getElementById('fri').checked = false;
+    document.getElementById('sat').checked = false;
+    document.getElementById('sun').checked = false;
+    document.getElementById('all').checked = false;
+    document.getElementById('starthr').selectedIndex = 0;
+    document.getElementById('startmin').selectedIndex = 0;
+    document.getElementById('endhr').selectedIndex = 0;
+    document.getElementById('endmin').selectedIndex = 0;
+    document.getElementById('addmode').selectedIndex= 0;
+
 }
 
 function logout()
