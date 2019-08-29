@@ -149,7 +149,7 @@ input::selection {
 }
 
 #maincontainer {
-  max-width: 1536px;
+  min-width: 2000px;
 }
 
 /*******************************
