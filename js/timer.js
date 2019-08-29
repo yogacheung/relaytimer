@@ -180,13 +180,13 @@ function drawtable(){
   table += '<table class="table table-bordered" stype="border-spacing:10" align="center">';
   table += '<thead class="thead-dark"><tr>';
   table += '<th></th>';
-  table += '<th scope="col" style="font-size: 120%;">Monday</th>';
-  table += '<th scope="col" style="font-size: 120%;">Tuesday</th>';
-  table += '<th scope="col" style="font-size: 120%;">Wednesday</th>';
-  table += '<th scope="col" style="font-size: 120%;">Thursday</th>';
-  table += '<th scope="col" style="font-size: 120%;">Friday</th>';
-  table += '<th scope="col" style="font-size: 120%;">Saturday</th>';
-  table += '<th scope="col" style="font-size: 120%;">Sunday</th>';
+  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Mon</th>';
+  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Tue</th>';
+  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Wed</th>';
+  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Thu</th>';
+  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Fri</th>';
+  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Sat</th>';
+  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Sun</th>';
   table += '</tr></thead>';
 
   table += '<tbody>';
@@ -194,7 +194,7 @@ function drawtable(){
   for(var hr = 0; hr < 24; hr++){    
     for(var min = 0; min < 6; min++){
       table += '<tr>';
-      table += '<td class="align-middle">' + hrs[hr] + ':' + mins[min] + '</td>';
+      table += '<td class="align-middle" >' + hrs[hr] + ':' + mins[min] + '</td>';
       var v = hr*6+min;
       for(var i = 0; i < 7; i++){
         table += `<td style="text-align:center;"> 

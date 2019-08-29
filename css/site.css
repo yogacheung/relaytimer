@@ -149,8 +149,10 @@ input::selection {
 }
 
 #maincontainer {
-  min-width: 2000px;
+  min-width: 1024px;
 }
+
+
 
 /*******************************
         Global Overrides
