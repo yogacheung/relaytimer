@@ -148,6 +148,11 @@ input::selection {
   color: rgba(0, 0, 0, 0.87);
 }
 
+#maincontainer {
+  min-width: 1024px;
+}
+
+
 
 /*******************************
         Global Overrides
