@@ -1,7 +1,7 @@
 <?php 
 	$text = file_get_contents("../login.txt");
 	  
-	//echo $text;  
+	echo $text;  
 	  
 	$arr = explode(',', $text);
 	  
