@@ -4,8 +4,10 @@
   <title>Chiller Relay Control</title>
   <!-- Required meta tags -->
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-height, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">    
+
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -42,7 +44,7 @@
   </script>
   
   <div >
-    <a  class="float" id="menu-share">
+    <a href="" class="float" id="menu-share">
     <i class="fa fa-cog my-float"></i>
     </a>
     <ul>
@@ -59,7 +61,7 @@
     </ul>
   </div>
           
-  <div class="container" id="maincontainer">
+  <div class="container">
     
     <div class="row">
         <i class="large material-icons" style="font-size: 60px;">access_time</i><div style="font-size: 40px;padding-top: 20px;" id="clockbox"></div>
@@ -72,7 +74,7 @@
     </div>
   
   <!-- Modal Structure -->
-  <div id="modal1" class="modal" style="height: 480px">
+  <div id="modal1" class="modal" style="height: 460px">
     <div class="modal-content">
       <h4>Add Schedule</h4>      
       
@@ -225,8 +227,8 @@
     
     </div>
     <div class="modal-footer">
-      <a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a class="modal-close waves-effect waves-green btn-flat" onclick="add()">Add</a>
+      <a class="modal-close waves-effect waves-green btn-flat" style="background-color: #E5E8E8">Cancel</a> &nbsp &nbsp
+      <a class="modal-close waves-effect waves-green btn-flat" style="background-color: #AED6F1" onclick="add()">Add</a>
     </div>
   </div>
   
@@ -252,9 +254,9 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a class="modal-close waves-effect waves-green btn-flat" onclick="remove()">Remove</a>
-      <a class="modal-close waves-effect waves-green btn-flat" onclick="update()">Update</a>
+      <a class="modal-close waves-effect waves-green btn-flat"  style="background-color: #E5E8E8">Cancel</a> &nbsp &nbsp
+      <a class="modal-close waves-effect waves-green btn-flat" style="background-color: #F5B7B1" onclick="remove()">Remove</a> &nbsp &nbsp
+      <a class="modal-close waves-effect waves-green btn-flat" style="background-color: #AED6F1" onclick="update()">Update</a>
     </div>
   </div>
     

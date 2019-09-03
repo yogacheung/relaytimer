@@ -141,7 +141,6 @@ function add(){
   
   savefile();
   drawtable();
-  resetform();
 }
 
 function remove(){
@@ -150,9 +149,12 @@ function remove(){
   timetable[h][w] = 1;
 
   //console.log(timetable[h][w]);
-  savefile();
-  drawtable();
-
+  
+  var c = confirm("Confirm?");
+  if(c == true) {
+    savefile();
+    drawtable();
+  }
 }
 
 function update(){
@@ -167,8 +169,11 @@ function update(){
   timetable[h][w] = parseInt(smode);
 
   //console.log(timetable[h][w]);
-  savefile()
-  drawtable();
+  var c = confirm("Confirm?");
+  if(c == true) {
+    savefile()
+    drawtable();
+  }
 }
 
 function drawtable(){
@@ -181,13 +186,13 @@ function drawtable(){
   table += '<table class="table table-bordered" stype="border-spacing:10" align="center">';
   table += '<thead class="thead-dark"><tr>';
   table += '<th></th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Mon</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Tue</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Wed</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Thu</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Fri</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Sat</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Sun</th>';
+  table += '<th scope="col" style="font-size: 120%; width:14.28%; text-align: center;">Monday</th>';
+  table += '<th scope="col" style="font-size: 120%; width:14.28%; text-align: center;">Tuesday</th>';
+  table += '<th scope="col" style="font-size: 120%; width:14.28%; text-align: center;">Wednesday</th>';
+  table += '<th scope="col" style="font-size: 120%; width:14.28%; text-align: center;">Thursday</th>';
+  table += '<th scope="col" style="font-size: 120%; width:14.28%; text-align: center;">Friday</th>';
+  table += '<th scope="col" style="font-size: 120%; width:14.28%; text-align: center;">Saturday</th>';
+  table += '<th scope="col" style="font-size: 120%; width:14.28%; text-align: center;">Sunday</th>';
   table += '</tr></thead>';
 
   table += '<tbody>';
@@ -195,12 +200,20 @@ function drawtable(){
   for(var hr = 0; hr < 24; hr++){    
     for(var min = 0; min < 6; min++){
       table += '<tr>';
-      table += '<td class="align-middle" >' + hrs[hr] + ':' + mins[min] + '</td>';
+      table += '<td class="align-middle">' + hrs[hr] + ':' + mins[min] + '</td>';
       var v = hr*6+min;
       for(var i = 0; i < 7; i++){
         table += `<td style="text-align:center;"> 
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal2" onclick="setcell(` + v + `, `+ i +`)">`+ timetable[v][i] +`</a>
-        </td>`;
+        <a class="waves-effect waves-light btn modal-trigger" `
+        if(timetable[v][i] == 1){
+          table += `style="background-color: white; color:black; width:80%" `
+        }else if(timetable[v][i] == 2){
+          table += `style="color:black; width:80%" `
+        }else{
+          table += `style="background-color: orange; color:black; width:80%" `          
+        }
+        table += `href="#modal2" onclick="setcell(` + v + `, `+ i +`)">`+ timetable[v][i] +`</a>
+                  </td>`;
       }
       table += '</tr>';
     }    
@@ -282,26 +295,12 @@ function setcell(hm, w){
   //c.innerHTML = "<h4>Edit - " + hm + ":" + w + "</h4>";
 }
 
-function resetform(){
-    document.getElementById('mon').checked = false;
-    document.getElementById('tue').checked = false;
-    document.getElementById('wed').checked = false;
-    document.getElementById('thu').checked = false;
-    document.getElementById('fri').checked = false;
-    document.getElementById('sat').checked = false;
-    document.getElementById('sun').checked = false;
-    document.getElementById('all').checked = false;
-    document.getElementById('starthr').selectedIndex = 0;
-    document.getElementById('startmin').selectedIndex = 0;
-    document.getElementById('endhr').selectedIndex = 0;
-    document.getElementById('endmin').selectedIndex = 0;
-    document.getElementById('addmode').selectedIndex= 0;
-
-}
-
 function logout()
 {
-  window.location.href="index.html";
+  var c = confirm("Confirm?");
+  if(c == true) {
+    window.location.href="index.html";
+  }
 }
 
 function clock(){
