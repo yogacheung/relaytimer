@@ -1,15 +1,9 @@
 <?php 
 	$text = file_get_contents("../login.txt");
 	  
-	echo $text;  
+	//echo $text;  
 	  
 	$arr = explode(',', $text);
-	//echo $text;  
-
-	$pretrim =  explode(',', $text);
-
-
-	$arr = array_map('trim',$pretrim);
 	  
 	$name = $_GET["name"];
 	$password = $_GET["password"];
