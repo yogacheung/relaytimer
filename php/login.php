@@ -3,11 +3,8 @@
 	  
 	//echo $text;  
 	  
-	// $arr = explode(',', $text);
+	$arr = explode(',', $text);
 	  
-	$pretrim =  explode(',', $text);
-	$arr = array_map('trim',$pretrim);
-	 
 	$name = $_GET["name"];
 	$password = $_GET["password"];
   
