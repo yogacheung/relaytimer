@@ -181,13 +181,13 @@ function drawtable(){
   table += '<table class="table table-bordered" stype="border-spacing:10" align="center">';
   table += '<thead class="thead-dark"><tr>';
   table += '<th></th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Mon</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Tue</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Wed</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Thu</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Fri</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Sat</th>';
-  table += '<th scope="col" style="font-size: 120%;text-align: -webkit-center;">Sun</th>';
+  table += '<th scope="col" style="font-size: 120%;width:14.28%;text-align: -webkit-center;">Mon</th>';
+  table += '<th scope="col" style="font-size: 120%;width:14.28%;text-align: -webkit-center;">Tue</th>';
+  table += '<th scope="col" style="font-size: 120%;width:14.28%;text-align: -webkit-center;">Wed</th>';
+  table += '<th scope="col" style="font-size: 120%;width:14.28%;text-align: -webkit-center;">Thu</th>';
+  table += '<th scope="col" style="font-size: 120%;width:14.28%;text-align: -webkit-center;">Fri</th>';
+  table += '<th scope="col" style="font-size: 120%;width:14.28%;text-align: -webkit-center;">Sat</th>';
+  table += '<th scope="col" style="font-size: 120%;width:14.28%;text-align: -webkit-center;">Sun</th>';
   table += '</tr></thead>';
 
   table += '<tbody>';
@@ -199,8 +199,16 @@ function drawtable(){
       var v = hr*6+min;
       for(var i = 0; i < 7; i++){
         table += `<td style="text-align:center;"> 
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal2" onclick="setcell(` + v + `, `+ i +`)">`+ timetable[v][i] +`</a>
-        </td>`;
+        <a class="waves-effect waves-light btn modal-trigger" `
+        if(timetable[v][i] == 1){
+          table += `style="background-color: white; color:black; width:80%" `
+        }else if(timetable[v][i] == 2){
+          table += `style="color:black; width:80%" `
+        }else{
+          table += `style="background-color: orange; color:black; width:80%" `          
+        }
+        table += `href="#modal2" onclick="setcell(` + v + `, `+ i +`)">`+ timetable[v][i] +`</a>
+                  </td>`;
       }
       table += '</tr>';
     }    
