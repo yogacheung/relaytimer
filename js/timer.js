@@ -141,6 +141,7 @@ function add(){
   
   savefile();
   drawtable();
+  resetform();
 }
 
 function remove(){
@@ -222,6 +223,23 @@ function drawtable(){
   table += '</tbody></table>';  
 
   t.innerHTML = table;
+}
+
+function resetform(){
+    document.getElementById('mon').checked = false;
+    document.getElementById('tue').checked = false;
+    document.getElementById('wed').checked = false;
+    document.getElementById('thu').checked = false;
+    document.getElementById('fri').checked = false;
+    document.getElementById('sat').checked = false;
+    document.getElementById('sun').checked = false;
+    document.getElementById('all').checked = false;
+    document.getElementById('starthr').selectedIndex = 0;
+    document.getElementById('startmin').selectedIndex = 0;
+    document.getElementById('endhr').selectedIndex = 0;
+    document.getElementById('endmin').selectedIndex = 0;
+    document.getElementById('addmode').selectedIndex= 0;
+
 }
 
 function initdata(){
